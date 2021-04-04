@@ -75,19 +75,25 @@
                             <div class="slds-progress slds-progress_vertical">
                                 <ol class="slds-progress__list">
                                     <aura:iteration items="{!v.statusList}" var="status">
-                                        <li class="slds-progress__item slds-is-completed">
+                                        <li class="slds-progress__item slds-is-completed" style="height:60px">
                                             <span class="slds-icon_container slds-icon-utility-success slds-progress__marker slds-progress__marker_icon" title="Complete">
                                                 <lightning:icon size="xx-small" iconName="utility:success"></lightning:icon>
                                             </span>
                                             <div class="slds-progress__item_content slds-grid slds-grid_align-spread">
                                                 <b>{!status.Status__c}</b>
+                                                <div style="position: absolute; top: 37px;">
+                                                    <p style="font-size: 10px;"><i>From {!status.From_Location__c} To {!status.To_Location__c}</i></p>
+                                                    <p style="font-size: 10px; margin-top: -4px;"><i>Date:{!status.Date__c} | Time:{!status.formatedTime}</i></p>
+                                                </div>
                                             </div>
                                         </li>
                                     </aura:iteration>
                                 </ol>
                             </div>
                             <aura:if isTrue="{!v.loadMap}">
-                                <c:MapComp source="{!v.source}" destination="{!v.destination}" currentLocation="{!v.currentLocation}"/>
+                                <div style="margin-top:20px">
+                                    <c:MapComp source="{!v.source}" destination="{!v.destination}" currentLocation="{!v.currentLocation}"/>
+                                </div>
                             </aura:if>
                         </aura:if>
                     </div>
