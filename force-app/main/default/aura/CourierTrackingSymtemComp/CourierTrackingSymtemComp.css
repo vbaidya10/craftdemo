@@ -1,0 +1,17 @@
+.THIS .label-style{
+    color: #3E3E3C;
+    font-size: 12px;
+}
+.THIS .full-padd{
+    padding:6px;
+}
+.THIS .top-padd{
+    padding-top:6px;
+}
+.THIS .inner-body{
+    border: 1px solid #DDDBDA;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 10px;
+}

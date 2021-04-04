@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="mapMarkers" type="Object"/>
+    <aura:attribute name="markersTitle" type="String" />
+    <aura:attribute name="source" type="String"/>
+    <aura:attribute name="destination" type="String"/>
+    <aura:attribute name="currentLocation" type="String"/>
+    <aura:attribute name="selectedMarkerValue" type="String" default="France1" />
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <lightning:map 
+                   mapMarkers="{! v.mapMarkers }"
+                   markersTitle="{!v.markersTitle}"
+                   selectedMarkerValue="{!v.selectedMarkerValue}"
+                   onmarkerselect="{!c.handleMarkerSelect}" />
+</aura:component>

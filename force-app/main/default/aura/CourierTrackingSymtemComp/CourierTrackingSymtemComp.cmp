@@ -1,0 +1,96 @@
+<aura:component controller="CourierTrackingSystemController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="acc" type="Account"/>
+    <aura:attribute name="tracking" type="Courier_Tracking__c"/>
+    <aura:attribute name="cardNumber" type="string"/>
+    <aura:attribute name="isLoaded" type="boolean" default="false" />
+    <aura:attribute name="headerText" type="string" default="Courier Schedule System"/>
+    <aura:attribute name="statusList" type="list"/>
+    <aura:attribute name="source" type="string" />
+    <aura:attribute name="destination" type="string" />
+    <aura:attribute name="currentLocation" type="string" />
+    <aura:attribute name="loadMap" type="boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.isLoaded}">
+        <div class="slds-page-header full-padd" style="padding:6px;">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container">
+                                <lightning:icon iconName="custom:custom98"></lightning:icon>
+                            </span>
+                        </div>
+                        <div class="slds-media__body top-padd" style="padding-top:6px;">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate">{!v.headerText}</span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="border: 1px solid #DDDBDA; border-radius: 0px 0px 5px 5px; margin-bottom: 10px; background-color: white; padding: 10px;">
+            
+            <aura:if isTrue="{!v.acc.Account_Courier_Status__c == null}">
+                
+                <label class="label-style">Account Name</label><br/>
+                {!v.acc.Name}<br/><br/>
+                <label class="label-style">Card Number</label><br/>
+                {!v.cardNumber}<br/><br/>
+                <lightning:input type="date" label="Date" aura:id="scheduleDate" placeholder="Select a Date"/><br/>
+                <lightning:input type="time" label="Time" aura:id="scheduleTime" placeholder="Select a Time"/><br/>
+                <lightning:button class="slds-m-top_small" variant="brand" label="Schedule" onclick="{!c.scheduleTracking}"/>
+                <lightning:button class="slds-m-top_small" label="Reset" onclick="{!c.reset}"/>
+                
+                <aura:set attribute="else">
+                    <div>
+                        <aura:if isTrue="{!v.tracking.Status__c == 'Dispatched'}">
+                            <div>
+                                <div style="float: left; width: 94%;">
+                                    Showing Tracking Details of Tracking Id : <b>{!v.acc.Tracking_Id__c}</b>
+                                </div>
+                                <div style="margin-top: -5px; float: left; width: 6%; cursor: pointer;" onclick="{!c.refreshCourierStatus}">
+                                    <lightning:icon size="xx-small" iconName="action:refresh"></lightning:icon>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="slds-progress slds-progress_vertical">
+                                <ol class="slds-progress__list">
+                                    <aura:iteration items="{!v.statusList}" var="status">
+                                        <li class="slds-progress__item slds-is-completed">
+                                            <span class="slds-icon_container slds-icon-utility-success slds-progress__marker slds-progress__marker_icon" title="Complete">
+                                                <lightning:icon size="xx-small" iconName="utility:success"></lightning:icon>
+                                            </span>
+                                            <div class="slds-progress__item_content slds-grid slds-grid_align-spread">
+                                                <b>{!status.Status__c}</b>
+                                            </div>
+                                        </li>
+                                    </aura:iteration>
+                                </ol>
+                            </div>
+                            <aura:if isTrue="{!v.loadMap}">
+                                <c:MapComp source="{!v.source}" destination="{!v.destination}" currentLocation="{!v.currentLocation}"/>
+                            </aura:if>
+                        </aura:if>
+                        <aura:if isTrue="{!v.tracking.Status__c == 'Scheduled'}">
+                            <label class="label-style">Status</label><br/>
+                            {!v.tracking.Status__c}<br/><br/>
+                            <label class="label-style">Date</label><br/>
+                            {!v.tracking.Date__c}<br/><br/>
+                            <label class="label-style">Time</label><br/>
+                            {!v.tracking.formatedTime}<br/><br/>
+                            <lightning:button class="slds-m-top_small" variant="brand" label="Confirm Pickup" onclick="{!c.confirmPickup}"/>
+                            <lightning:button class="slds-m-top_small" label="Reschedule" onclick="{!c.reschedule}"/>
+                        </aura:if>
+                    </div>
+                </aura:set>
+                
+            </aura:if> 
+        </div>
+    </aura:if>
+</aura:component>
