@@ -4,6 +4,7 @@
     <aura:attribute name="tracking" type="Courier_Tracking__c"/>
     <aura:attribute name="cardNumber" type="string"/>
     <aura:attribute name="isLoaded" type="boolean" default="false" />
+    <aura:attribute name="isCase" type="boolean" default="false" />
     <aura:attribute name="headerText" type="string" default="Courier Schedule System"/>
     <aura:attribute name="statusList" type="list"/>
     <aura:attribute name="source" type="string" />
@@ -49,9 +50,21 @@
                 
                 <aura:set attribute="else">
                     <div>
+                        <aura:if isTrue="{!v.tracking.Status__c == 'Scheduled' || v.isCase==true}">
+                            <div style="margin-bottom:10px">
+                                <label class="label-style">Status</label><br/>
+                                {!v.tracking.Status__c}<br/><br/>
+                                <label class="label-style">Date</label><br/>
+                                {!v.tracking.Date__c}<br/><br/>
+                                <label class="label-style">Time</label><br/>
+                                {!v.tracking.formatedTime}<br/><br/>
+                                <lightning:button class="slds-m-top_small" variant="brand" label="Confirm Pickup" onclick="{!c.confirmPickup}"/>
+                                <lightning:button class="slds-m-top_small" label="Reschedule" onclick="{!c.reschedule}"/>
+                            </div>
+                        </aura:if>
                         <aura:if isTrue="{!v.tracking.Status__c == 'Dispatched'}">
                             <div>
-                                <div style="float: left; width: 94%;">
+                                <div style="float: left; width: 94%; margin-top:10px">
                                     Showing Tracking Details of Tracking Id : <b>{!v.acc.Tracking_Id__c}</b>
                                 </div>
                                 <div style="margin-top: -5px; float: left; width: 6%; cursor: pointer;" onclick="{!c.refreshCourierStatus}">
@@ -76,16 +89,6 @@
                             <aura:if isTrue="{!v.loadMap}">
                                 <c:MapComp source="{!v.source}" destination="{!v.destination}" currentLocation="{!v.currentLocation}"/>
                             </aura:if>
-                        </aura:if>
-                        <aura:if isTrue="{!v.tracking.Status__c == 'Scheduled'}">
-                            <label class="label-style">Status</label><br/>
-                            {!v.tracking.Status__c}<br/><br/>
-                            <label class="label-style">Date</label><br/>
-                            {!v.tracking.Date__c}<br/><br/>
-                            <label class="label-style">Time</label><br/>
-                            {!v.tracking.formatedTime}<br/><br/>
-                            <lightning:button class="slds-m-top_small" variant="brand" label="Confirm Pickup" onclick="{!c.confirmPickup}"/>
-                            <lightning:button class="slds-m-top_small" label="Reschedule" onclick="{!c.reschedule}"/>
                         </aura:if>
                     </div>
                 </aura:set>

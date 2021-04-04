@@ -12,7 +12,7 @@
         var action = component.get("c.callCourierService");
         action.setParams({
             'trackingId': component.get("v.tracking").Id,
-            'accId': component.get("v.recordId")
+            'accId': component.get("v.acc").Id
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -89,7 +89,7 @@
         var action = component.get("c.setCourierAsDelivered");
         action.setParams({
             'trackingId': component.get("v.tracking").Id,
-            'accId': component.get("v.recordId"),
+            'accId': component.get("v.acc").Id,
             'receivedBy': receivedBy,
             'receivedByPhone': receivedByPhone
         });

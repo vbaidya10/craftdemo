@@ -1,5 +1,5 @@
 declare module "@salesforce/apex/CourierTrackingSystemController.getAccountDetails" {
-  export default function getAccountDetails(param: {accId: any}): Promise<any>;
+  export default function getAccountDetails(param: {recId: any}): Promise<any>;
 }
 declare module "@salesforce/apex/CourierTrackingSystemController.createOrUpdateTracking" {
   export default function createOrUpdateTracking(param: {trackingId: any, accId: any, scheduledDate: any, scheduledTime: any}): Promise<any>;

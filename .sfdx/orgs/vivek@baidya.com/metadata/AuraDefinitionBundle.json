@@ -1,0 +1,57 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "0057F000000IAAuQAO",
+      "createdByName": "Vivek Baidya",
+      "createdDate": "2019-04-12T12:35:42.000Z",
+      "fileName": "aura/Towermap",
+      "fullName": "Towermap",
+      "id": "0Ab7F000000bBxbSAE",
+      "lastModifiedById": "0057F000000IAAuQAO",
+      "lastModifiedByName": "Vivek Baidya",
+      "lastModifiedDate": "2019-04-12T12:46:52.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    },
+    {
+      "createdById": "0057F000000IAAuQAO",
+      "createdByName": "Vivek Baidya",
+      "createdDate": "2021-04-03T05:07:19.000Z",
+      "fileName": "aura/CourierTrackingSymtemComp",
+      "fullName": "CourierTrackingSymtemComp",
+      "id": "0Ab7F000000ftTQSAY",
+      "lastModifiedById": "0057F000000IAAuQAO",
+      "lastModifiedByName": "Vivek Baidya",
+      "lastModifiedDate": "2021-04-04T19:42:55.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    },
+    {
+      "createdById": "0057F000000IAAuQAO",
+      "createdByName": "Vivek Baidya",
+      "createdDate": "2021-04-04T12:23:41.000Z",
+      "fileName": "aura/MapComp",
+      "fullName": "MapComp",
+      "id": "0Ab7F000000ftYGSAY",
+      "lastModifiedById": "0057F000000IAAuQAO",
+      "lastModifiedByName": "Vivek Baidya",
+      "lastModifiedDate": "2021-04-04T15:35:30.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    },
+    {
+      "createdById": "0057F000000IAAuQAO",
+      "createdByName": "Vivek Baidya",
+      "createdDate": "2021-03-10T16:33:29.000Z",
+      "fileName": "aura/KnowledgeArticleSearch",
+      "fullName": "KnowledgeArticleSearch",
+      "id": "0Ab7F000000KwyvSAC",
+      "lastModifiedById": "0057F000000IAAuQAO",
+      "lastModifiedByName": "Vivek Baidya",
+      "lastModifiedDate": "2021-03-11T04:34:26.000Z",
+      "manageableState": "unmanaged",
+      "type": "AuraDefinitionBundle"
+    }
+  ]
+}

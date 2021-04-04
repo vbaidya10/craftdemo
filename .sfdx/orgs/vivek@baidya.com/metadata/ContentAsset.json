@@ -1,0 +1,16 @@
+{
+  "status": 0,
+  "result": {
+    "createdById": "0057F000000IAAuQAO",
+    "createdByName": "Vivek Baidya",
+    "createdDate": "2019-12-05T06:54:56.000Z",
+    "fileName": "contentassets/Screen_Shot_20191202_at_82629_PM.asset",
+    "fullName": "Screen_Shot_20191202_at_82629_PM",
+    "id": "03S7F000000DbznUAC",
+    "lastModifiedById": "0057F000000IAAuQAO",
+    "lastModifiedByName": "Vivek Baidya",
+    "lastModifiedDate": "2019-12-05T06:54:56.000Z",
+    "manageableState": "unmanaged",
+    "type": "ContentAsset"
+  }
+}

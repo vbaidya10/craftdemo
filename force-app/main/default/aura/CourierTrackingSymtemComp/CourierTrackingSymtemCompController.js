@@ -1,8 +1,12 @@
 ({
     doInit : function(component, event, helper) {
+        var recId = component.get("v.recordId");
+        if(recId.startsWith('500')){
+            component.set("v.isCase",true);
+        }
         var action = component.get("c.getAccountDetails");
         action.setParams({
-            'accId': component.get("v.recordId")
+            'recId': component.get("v.recordId")
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -32,7 +36,7 @@
         var trackingSfId = (component.get("v.tracking")==null)?'':component.get("v.tracking").Id;
         var action = component.get("c.createOrUpdateTracking");
         action.setParams({
-            'accId': component.get("v.recordId"),
+            'accId': component.get("v.acc").Id,
             'trackingId': trackingSfId,
             'scheduledDate': component.find("scheduleDate").get("v.value"),
             'scheduledTime': component.find("scheduleTime").get("v.value")
@@ -63,7 +67,7 @@
         var action = component.get("c.confirmCourierPickup");
         action.setParams({
             'trackingId': component.get("v.tracking").Id,
-            'accId': component.get("v.recordId")
+            'accId': component.get("v.acc").Id
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -73,7 +77,7 @@
                     component.set("v.tracking.Status__c","Dispatched");
                     $A.get('e.force:refreshView').fire();
                     helper.toastMsg("Courier Dispatched Successfully!");
-                    helper.invokeCourierService(component, event, helper, component.get("v.recordId"), component.get("v.tracking").Id);
+                    helper.invokeCourierService(component, event, helper, component.get("v.acc").Id, component.get("v.tracking").Id);
                 }
             }
             else if(state === "ERROR"){
