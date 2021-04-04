@@ -38,16 +38,16 @@
         <div style="border: 1px solid #DDDBDA; border-radius: 0px 0px 5px 5px; margin-bottom: 10px; background-color: white; padding: 10px;">
             
             <aura:if isTrue="{!v.acc.Account_Courier_Status__c == null}">
-                
-                <label class="label-style">Account Name</label><br/>
-                {!v.acc.Name}<br/><br/>
-                <label class="label-style">Card Number</label><br/>
-                {!v.cardNumber}<br/><br/>
-                <lightning:input type="date" label="Date" aura:id="scheduleDate" placeholder="Select a Date"/><br/>
-                <lightning:input type="time" label="Time" aura:id="scheduleTime" placeholder="Select a Time"/><br/>
-                <lightning:button class="slds-m-top_small" variant="brand" label="Schedule" onclick="{!c.scheduleTracking}"/>
-                <lightning:button class="slds-m-top_small" label="Reset" onclick="{!c.reset}"/>
-                
+                <div>
+                    <label class="label-style">Account Name</label><br/>
+                    {!v.acc.Name}<br/><br/>
+                    <label class="label-style">Card Number</label><br/>
+                    {!v.cardNumber}<br/><br/>
+                    <lightning:input required="true" type="date" label="Date" aura:id="scheduleDate" placeholder="Select a Date"/><br/>
+                    <lightning:input required="true" type="time" label="Time" aura:id="scheduleTime" placeholder="Select a Time"/><br/>
+                    <lightning:button class="slds-m-top_small" variant="brand" label="Schedule" onclick="{!c.scheduleTracking}"/>
+                    <lightning:button class="slds-m-top_small" label="Reset" onclick="{!c.reset}"/>
+                </div>
                 <aura:set attribute="else">
                     <div>
                         <aura:if isTrue="{!v.tracking.Status__c == 'Scheduled' || v.isCase==true}">

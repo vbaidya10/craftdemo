@@ -1,9 +1,9 @@
 ({
-    toastMsg : function(msg){
+    toastMsg : function(msg,typ){
         var toastEvent = $A.get("e.force:showToast");
         toastEvent.setParams({
             "message": msg,
-            "type": "success"
+            "type": typ
         });
         toastEvent.fire();
     },
@@ -101,7 +101,7 @@
                     component.set("v.tracking.Status__c","Delivered");
                     component.set("v.acc.Account_Courier_Status__c","Delivered");
                     $A.get('e.force:refreshView').fire();
-                    helper.toastMsg("Courier Delivered Successfully!");
+                    helper.toastMsg("Courier Delivered Successfully!","success");
                 }
             }
             else if(state === "ERROR"){

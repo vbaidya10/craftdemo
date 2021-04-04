@@ -33,6 +33,13 @@
     },
     
     scheduleTracking : function(component, event, helper) {
+        if(component.find("scheduleDate").get("v.value") == ''){
+            helper.toastMsg("Please select Date.","warning");
+            return;
+        }else if(component.find("scheduleTime").get("v.value") == ''){
+            helper.toastMsg("Please select Time.","warning");
+            return;
+        }
         var trackingSfId = (component.get("v.tracking")==null)?'':component.get("v.tracking").Id;
         var action = component.get("c.createOrUpdateTracking");
         action.setParams({
@@ -49,7 +56,7 @@
                 component.set("v.headerText","Courier Tracking System");
                 component.set("v.acc.Account_Courier_Status__c","Scheduled");
                 $A.get('e.force:refreshView').fire();
-                helper.toastMsg("Courier Scheduled Successfully!");
+                helper.toastMsg("Courier Scheduled Successfully!","success");
             }
             else if(state === "ERROR"){
                 alert(response.getError()[0].message);
@@ -76,7 +83,7 @@
                 if(returnVal=='dispatched'){
                     component.set("v.tracking.Status__c","Dispatched");
                     $A.get('e.force:refreshView').fire();
-                    helper.toastMsg("Courier Dispatched Successfully!");
+                    helper.toastMsg("Courier Dispatched Successfully!","success");
                     helper.invokeCourierService(component, event, helper, component.get("v.acc").Id, component.get("v.tracking").Id);
                 }
             }
