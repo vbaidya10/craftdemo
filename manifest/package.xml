@@ -7,6 +7,7 @@
     </types>
     <types>
         <members>CourierTrackingSymtemComp</members>
+        <members>MapComp</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <version>51.0</version>

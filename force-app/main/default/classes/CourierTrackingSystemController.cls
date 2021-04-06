@@ -75,7 +75,11 @@ public class CourierTrackingSystemController {
     @AuraEnabled
     public static string callCourierService(string trackingId, string accId){
         try{
-            return CourierAPICall.api_post(accId+'#'+trackingId+'#'+system.now(), UserInfo.getName(), '9832049910', 'Delhi', 'Patna');
+            Organization org = [select id,street,city,phone from organization where id=:userinfo.getOrganizationId()];
+            string sourceAddress = org.street+','+org.city;
+            Account a = [select id,shippingstreet,shippingcity from account where id=:accId];
+            string destinationAddress = a.shippingstreet+','+a.shippingcity;
+            return CourierAPICall.api_post(accId+'#'+trackingId+'#'+system.now(), UserInfo.getName(), org.phone, sourceAddress, destinationAddress); 
         }
         catch(Exception e){
             throw new AuraHandledException(e.getMessage());

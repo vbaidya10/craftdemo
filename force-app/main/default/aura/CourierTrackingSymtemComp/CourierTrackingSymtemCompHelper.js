@@ -11,8 +11,8 @@
     invokeCourierService : function(component, event, helper, accId, trackingId) {
         var action = component.get("c.callCourierService");
         action.setParams({
-            'trackingId': component.get("v.tracking").Id,
-            'accId': component.get("v.acc").Id
+            'trackingId': trackingId,
+            'accId': accId
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
