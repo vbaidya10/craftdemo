@@ -5,21 +5,16 @@ public class CraftPrograms {
             return null;
         }
         List<String> charArray = strToEvaluate.split('');
-        Map<String,Integer> storedMap = new Map<String,Integer>();
+        Set<String> setOfUniqueChars = new Set<String>();
         String returnedString = '';
-        for(String stoCheck : charArray){
-            if(storedMap.containsKey(stoCheck)){
-                storedMap.put(stoCheck,storedMap.get(stoCheck)+1);
-            }
-            else {
-                storedMap.put(stoCheck,1);
-            }
+        for(String ch : charArray){
+            setOfUniqueChars.add(ch);
         }
-        if(storedMap.keySet().size() ==1){
+        if(setOfUniqueChars.size() == 1){
             return '0, all are repeated';
         }
-        for(String sMapvalue : storedMap.keySet()) {
-            returnedString = returnedString + sMapvalue;
+        for(String ch : setOfUniqueChars) {
+            returnedString = returnedString + ch;
         } 
         return returnedString + ' - ' + returnedString.length();
     }

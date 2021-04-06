@@ -3,6 +3,7 @@
     <types>
         <members>CourierTrackingSystemController</members>
         <members>CourierAPICall</members>
+        <members>CraftPrograms</members>
         <name>ApexClass</name>
     </types>
     <types>
